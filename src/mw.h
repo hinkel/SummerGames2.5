@@ -264,7 +264,8 @@ typedef struct config_t
     uint16_t maxcheck;                      // maximum rc end
     uint8_t  retarded_arm;                  // allow disarsm/arm on throttle down + roll left/right
     uint16_t killswitchtime;                // Time in ms when your arm switch becomes a Killswitch, 0 disables
-
+    uint8_t  rc_motor;                      // [0-2] Behaviour when thr < rc_minchk: 0= minthrottle no regulation, 1= minthrottle&regulation, 2= Motorstop 
+    
     // Failsafe related configuration
     uint8_t  failsafe_delay;                // Guard time for failsafe activation after signal lost. 1 step = 0.1sec - 1sec in example (10)
     uint8_t  failsafe_off_delay;            // Time for Landing before motors stop in 0.1sec. 1 step = 0.1sec - 20sec in example (200)
