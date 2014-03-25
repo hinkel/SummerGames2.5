@@ -216,6 +216,7 @@ static void resetConf(void)
     cfg.retarded_arm              = 0;          // disable arm/disarm on roll left/right
     cfg.auxChannels               = 4;          // [4 - 10] cGiesen: Default = 4, then like the standard!
     cfg.killswitchtime            = 0;          // Time in ms when your arm switch becomes a Killswitch, 0 disables the Killswitch, can not be used together with FEATURE_INFLIGHT_ACC_CAL
+    cfg.rc_motor                  = 1;          // [0-2] Behaviour when thr < rc_minchk: 0= minthrottle no regulation, 1= minthrottle&regulation, 2= Motorstop 
 
     // Motor/ESC/Servo
     cfg.minthrottle               = 1150;       // ORIG
