@@ -159,6 +159,7 @@ const clivalue_t valueTable[] =
     { "maxcheck",                  VAR_UINT16, &cfg.maxcheck,                    0,       2000, 0 },
     { "retarded_arm",              VAR_UINT8,  &cfg.retarded_arm,                0,          1, 0 },
     { "killswitchtime",            VAR_UINT16, &cfg.killswitchtime,              0,      10000, 1 },
+    { "rc_motor",                  VAR_UINT8,  &cfg.rc_motor,                    0,          2, 1 },
     { "failsafe_delay",            VAR_UINT8,  &cfg.failsafe_delay,              0,         40, 1 },
     { "failsafe_off_delay",        VAR_UINT8,  &cfg.failsafe_off_delay,          0,        200, 1 },
     { "failsafe_throttle",         VAR_UINT16, &cfg.failsafe_throttle,        1000,       2000, 1 },
