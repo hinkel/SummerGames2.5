@@ -136,6 +136,8 @@ enum   // This is limited to 32 Boxes!!
     BOXHEADFREE,
     BOXBEEPERON,
     BOXHEADADJ,
+    BOXOSD,
+    BOXFAILSAFE,
     CHECKBOXITEMS
 };
 
@@ -153,7 +155,9 @@ static const char boxnames[] =
     "PASSTHRU;"
     "HEADFREE;"
     "BEEPER;"
-    "HEADADJ;";
+    "HEADADJ;"
+    "OSD SW;"
+    "FAILSAFE;";
 
 static const char pidnames[] =
     "ROLL;"
@@ -408,6 +412,7 @@ typedef struct flags_t
     uint8_t GPS_FIX_HOME;
     uint8_t SMALL_ANGLES_25;
     uint8_t CALIBRATE_MAG;
+    uint8_t FAILSAFE;
 } flags_t;
 
 extern float    gyroData[3];
