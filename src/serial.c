@@ -240,7 +240,9 @@ static void evaluateCommand(void)
                     f.HEADFREE_MODE        << BOXHEADFREE |
                     f.PASSTHRU_MODE        << BOXPASSTHRU |
                     rcOptions[BOXBEEPERON] << BOXBEEPERON |
-                    rcOptions[BOXHEADADJ]  << BOXHEADADJ);
+                    rcOptions[BOXHEADADJ]  << BOXHEADADJ) |
+                    rcOptions[BOXOSD]      << BOXOSD      |
+			        f.FAILSAFE             << BOXFAILSAFE );
         break;
     case MSP_RAW_IMU:
         headSerialReply(18);
