@@ -428,8 +428,8 @@ void mixTable(void)
         motor[i] = constrain(motor[i], cfg.minthrottle, cfg.maxthrottle);
         if ((rcData[THROTTLE]) < cfg.mincheck)
         {
-            if (!feature(FEATURE_MOTOR_STOP)) motor[i] = cfg.minthrottle;
-            else motor[i] = cfg.mincommand;
+            if (!cfg.rc_motor) motor[i] = cfg.minthrottle;
+            else if(cfg.rc_motor == 2) motor[i] = cfg.mincommand;
         }
         if (!f.ARMED) motor[i] = cfg.mincommand;
     }
