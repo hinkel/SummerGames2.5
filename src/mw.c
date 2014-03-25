@@ -789,6 +789,8 @@ void loop(void)
             }
             else GoodRCcnt = 0;
             failsafeCnt++;                                           // reset to 0 by pwm / spektrum driver on Signal
+            if (failsafeCnt > 2)f.FAILSAFE = 1;                      // Failsafe info for minimosd
+	        else f.FAILSAFE = 0;
         }
         else failsafeCnt = 0;
 
