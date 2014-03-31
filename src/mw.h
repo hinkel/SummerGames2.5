@@ -277,6 +277,7 @@ typedef struct config_t
     // motor/esc/servo related stuff
     uint16_t minthrottle;                   // Set the minimum throttle command sent to the ESC (Electronic Speed Controller). This is the minimum value that allow motors to run at a idle speed.
     uint16_t maxthrottle;                   // This is the maximum value for the ESCs at full power this value can be increased up to 2000
+    uint16_t esc_nfly;                      // This is the absolute throttle that kicks off the "has landed timer" if it is too low cfg.rc_minchk is taken.
     uint8_t  passmotor;                     // Crashpilot: Only used with feature pass. If 0 = all Motors, otherwise specific Motor
     uint16_t mincommand;                    // This is the value for the ESCs when they are not armed. In some cases, this value must be lowered down to 900 for some specific ESCs
     uint16_t motor_pwm_rate;                // The update rate of motor outputs (50-498Hz)
