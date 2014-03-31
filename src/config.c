@@ -222,6 +222,8 @@ static void resetConf(void)
     cfg.minthrottle               = 1150;       // ORIG
 //    cfg.minthrottle               = 1100;
     cfg.maxthrottle               = 1950;
+    cfg.esc_nfly                  = 1300;       // This is the absolute throttle that kicks off the "has landed timer" if it is too low cfg.rc_minchk + 5% is taken. Also baselinethr for Autostart, also plausibility check for initial Failsafethrottle
+//  cfg.esc_nfly                  = 0;
     cfg.passmotor                 = 0;          // Crashpilot: Only used with feature pass. If 0 = all Motors, otherwise specific Motor
     cfg.mincommand                = 1000;
     cfg.motor_pwm_rate            = 400;
