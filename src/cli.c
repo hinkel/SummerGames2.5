@@ -153,6 +153,7 @@ const clivalue_t valueTable[] =
     { "yawrate",                   VAR_UINT8,  &cfg.yawRate,                     0,        100, 1 },
     { "minthrottle",               VAR_UINT16, &cfg.minthrottle,                 0,       2000, 0 },
     { "maxthrottle",               VAR_UINT16, &cfg.maxthrottle,                 0,       2000, 0 },
+    { "esc_nfly",                  VAR_UINT16, &cfg.esc_nfly,                    0,       2000, 1 },
     { "passmotor",                 VAR_UINT8,  &cfg.passmotor,                   0,         10, 0 },
     { "mincommand",                VAR_UINT16, &cfg.mincommand,                  0,       2000, 0 },
     { "mincheck",                  VAR_UINT16, &cfg.mincheck,                    0,       2000, 0 },
