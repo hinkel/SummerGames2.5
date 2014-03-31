@@ -139,10 +139,10 @@ const clicmd_t cmdTable[] =
 
 const clivalue_t valueTable[] =
 {
-    { "deadband",                  VAR_UINT8,  &cfg.deadband,                    0,         32, 1 },
-    { "yawdeadband",               VAR_UINT8,  &cfg.yawdeadband,                 0,        100, 1 },
-    { "alt_hold_throttle_neutral", VAR_UINT8,  &cfg.alt_hold_throttle_neutral,   1,        100, 1 },
-    { "gps_adddb",                 VAR_UINT8,  &cfg.gps_adddb,                   0,        100, 1 },
+    { "deadband",                  VAR_UINT8,  &cfg.deadband,                    0,        100, 1 },
+    { "yawdeadband",               VAR_UINT8,  &cfg.yawdeadband,                 0,        200, 1 },
+    { "alt_hold_throttle_neutral", VAR_UINT8,  &cfg.alt_hold_throttle_neutral,   1,        250, 1 },
+    { "gps_adddb",                 VAR_UINT8,  &cfg.gps_adddb,                   0,        200, 1 },
     { "midrc",                     VAR_UINT16, &cfg.midrc,                    1200,       1700, 1 },
     { "auxChannels",               VAR_UINT8,  &cfg.auxChannels,                 4,         10, 0 },
     { "rc_rate",                   VAR_UINT8,  &cfg.rcRate8,                     0,        250, 1 },
