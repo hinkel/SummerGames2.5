@@ -498,6 +498,7 @@ extern float    GPS_angle[2];               // it's the angles that must be appl
 extern uint16_t GPS_ground_course;          // degrees*10
 extern uint8_t  GPS_Present;                // Checksum from Gps serial
 extern uint8_t  GPS_Enable;
+extern uint32_t GPS_time;                    //UTC time of coord calc - haydent // Shikra osd time
 extern float    nav[2];
 extern int8_t   nav_mode;                   // Navigation mode
 extern int8_t   wp_status;
