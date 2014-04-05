@@ -58,6 +58,7 @@ float    GPS_angle[2] = { 0, 0 };                                    // it's the
 uint16_t GPS_ground_course = 0;                                      // degrees * 10
 uint8_t  GPS_Present = 0;                                            // Checksum from Gps serial
 uint8_t  GPS_Enable = 0;
+uint32_t GPS_time;                                                   //UTC time of coord calc - haydent // Shikra osd time
 float    nav[2];
 float    nav_rated[2];                                               // Adding a rate controller to the navigation to make it smoother
 int8_t   nav_mode = NAV_MODE_NONE;                                   // Navigation mode
