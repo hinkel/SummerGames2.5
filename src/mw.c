@@ -41,7 +41,7 @@ uint8_t  SonarStatus = 0;                                            // 0 = no c
 uint8_t  SonarBreach = 0;                                            // 0 = Breach unknown, 1 = breached lower limit, 2 = breached upper limit (not used)
 uint16_t LandDetectMinThr = 0;                                       // Is set upon Baro initialization in sensors/sensorsAutodetect
 float    pressure;
-
+int16_t  ESCnoFlyThrottle;
 // **********************
 // GPS
 // **********************
