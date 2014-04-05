@@ -910,7 +910,7 @@ void loop(void)
 
         if (sensors(SENSOR_BARO))
         {
-            if (rcOptions[BOXBARO] && GroundAltInitialized)
+            if ((rcOptions[BOXBARO] && GroundAltInitialized && f.ARMED) || (f.BARO_MODE && f.ARMED && rcData[THROTTLE] < ESCnoFlyThrottle)) //Throttle must be over esc_nfly = 1300 to go out baromode
             {
                 if (!f.BARO_MODE)                                    // Initialize Baromode here if it isn't already
                 {
