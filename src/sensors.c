@@ -104,6 +104,8 @@ retry:                                               // Accelerometer. Fuck it. 
     }
     else sensorsClear(SENSOR_BARO);                  // Don't initialize Baro in feature pass
     
+    if(cfg.esc_nfly) ESCnoFlyThrottle = constrain(cfg.esc_nfly, cfg.minthrottle, cfg.maxthrottle); // Set the ESC PWM signal threshold for not flyable RPM
+    else ESCnoFlyThrottle = cfg.minthrottle + (((cfg.maxthrottle - cfg.minthrottle) * 5) / 100); // If not configured, take 5% above esc_min
     LandDetectMinThr = constrain(cfg.al_lndthr, cfg.minthrottle, cfg.maxthrottle);
 #endif
     GroundAltInitialized = false;                    // Now time to init things
