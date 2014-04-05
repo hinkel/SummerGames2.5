@@ -740,6 +740,7 @@ static bool UBLOX_parse_gps(void)
         Real_GPS_coord[LON] = _buffer.posllh.longitude;
         Real_GPS_coord[LAT] = _buffer.posllh.latitude;
         GPS_altitude        = _buffer.posllh.altitude_msl / 1000;               // alt in m
+        GPS_time      = _buffer.posllh.time;     //UTC mstow - haydent //Shikra OSD Patch
         f.GPS_FIX     = next_fix;
         _new_position = true;
         break;
