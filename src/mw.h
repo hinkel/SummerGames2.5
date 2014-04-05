@@ -483,6 +483,7 @@ extern uint8_t  SonarStatus;                // 0 = no contact, 1 = made contact,
 extern uint8_t  SonarBreach;                // 0 = Breach unknown, 1 = breached lower limit, 2 = breached upper limit (not used)
 extern uint16_t LandDetectMinThr;           // Is set upon Baro initialization
 extern float    pressure;
+extern int16_t  ESCnoFlyThrottle;
 
 // GPS stuff
 extern int32_t  GPS_coord[2];
