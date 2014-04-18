@@ -521,7 +521,7 @@ void loop(void)
     static int16_t  DistanceToHomeMetersOnRTLstart;
     static uint8_t  PHminSat;
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
-    int16_t         tmp0, thrdiff;
+    int16_t         tmp0, temp3, thrdiff;
     uint32_t        auxState = 0, auxStateTMP;
     uint8_t         axis, i;    
 
@@ -1163,13 +1163,15 @@ void loop(void)
             break;
         }
         
+        tmp3 = min(abs(rcData[YAW] - cfg.midrc), 500);   // Mode 2 Throttle Yaw on same stick
+        if (cfg.yawdeadband == 0) cfg.yawdeadband = 30;
         thrdiff = rcData[THROTTLE] - cfg.midrc;
         tmp0    = abs(thrdiff);
         if (tmp0 < cfg.alt_hold_throttle_neutral && ThrFstTimeCenter == 0) ThrFstTimeCenter = 1;
         if (currentTimeMS >= AltRCTimer0)                                                                                       // X Hz Loop
         {
             AltRCTimer0 = currentTimeMS + 100;
-            if (ThrFstTimeCenter == 1 && tmp0 > cfg.alt_hold_throttle_neutral)
+            if (ThrFstTimeCenter == 1 && tmp0 > cfg.alt_hold_throttle_neutral && tmp3 < cfg.yawdeadband)     // If Yaw Stick change do not interfere with Altitudehold  // Code for Mode 2 only              
             {
                 initialThrottleHold = initialThrottleHold + (BaroP / 100);							                                      // Adjust Baselinethr by 1% of BaroP
                 if (LastAltThrottle < cfg.maxthrottle && thrdiff >= 0)
