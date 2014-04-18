@@ -521,7 +521,7 @@ void loop(void)
     static int16_t  DistanceToHomeMetersOnRTLstart;
     static uint8_t  PHminSat;
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
-    int16_t         tmp0, temp3, thrdiff;
+    int16_t         tmp0, tmp3, thrdiff;
     uint32_t        auxState = 0, auxStateTMP;
     uint8_t         axis, i;    
 
