@@ -242,6 +242,7 @@ typedef struct config_t
     float    accz_alt_cf;                   // Crashpilot: Value for complementary filter accz and altitude
     float    baro_lag;                      // Lag of Baro
     float    barodownscale;                 // Scale downmovement down
+    uint16_t al_suptime;                    // 0 = disable // althold is engage autonomously after for ex: 2000 ms when throttle stick is not moving deadband fix = 25 Throttle
     uint8_t  baro_debug;                    // Crashpilot: 1 = Debug Barovalues
     uint8_t  moron_threshold;               // people keep forgetting that moving model while init results in wrong gyro offsets. and then they never reset gyro. so this is now on by default.
 
