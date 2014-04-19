@@ -523,7 +523,7 @@ void loop(void)
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
     int16_t         tmp0, tmp3, thrdiff, tmpTHR, tmpTHRdiff;
     uint32_t        auxState = 0, auxStateTMP;
-    uint8_t         axis, i, getTHR, Altholdsupp;    
+    uint8_t         axis, i, getTHR = 0, Altholdsupp;    
 
     // this will return false if spektrum is disabled. shrug.
     if (spektrumFrameComplete()) computeRC();                        // Generates no rcData yet, but rcDataSAVE
