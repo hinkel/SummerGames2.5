@@ -903,14 +903,42 @@ void loop(void)
         {
             if (!f.GPS_LOG_MODE) f.GPS_LOG_MODE = GPSFloppyInitWrite(); // Will turn false if not armed or anything else is fucked up
         } else f.GPS_LOG_MODE = 0;
-
+        
+// althold is engage autonomously after for ex: 2000ms when throttle stick is not moving deadband fix = 30 
+        
+	if (rcData[THROTTLE] > ESCnoFlyThrottle && cfg.al_suptime > 0 && !rcOptions[BOXBARO] && f.ARMED )
+	    { 
+            if (getTHR == 0)
+		{
+		 tmpTHR = rcData[THROTTLE];
+	         getTHR = 1;
+		}
+	    AltholdsuppTimer = currentTimeMS + cfg.al_suptime;
+	    tmpTHRdiff = abs(tmpTHR - rcData[THROTTLE]);
+	    if (tmpTHRdiff > 30)                                         // deadband is set to 30 fix value
+		{
+		 AltholdsuppTimer = 0;
+		 getTHR	= 0;
+		}
+            if (AltholdsuppTimer != 0 && currentTimeMS >= AltholdsuppTimer )
+		{
+		 Altholdsupp = 1;
+		}
+		else Altholdsupp = 0;
+	    } 
+	    else
+		{
+	         Altholdsupp = 0;
+		 getTHR	= 0;
+		}
+		
 #ifdef BARO
         if (!f.ARMED)                                                // Reset Baro stuff while not armed, but keep the other shit running so that poor user can see a green box
             f.BARO_MODE = 0;                                         // and not cry in the forums my baro is dead, and someone writes some code that also tries to read out the baro serial number.
 
         if (sensors(SENSOR_BARO))
         {
-            if ((rcOptions[BOXBARO] && GroundAltInitialized && f.ARMED) || (f.BARO_MODE && f.ARMED && rcData[THROTTLE] < ESCnoFlyThrottle)) //Throttle must be over esc_nfly = 1300 to go out baromode
+            if ((rcOptions[BOXBARO] && GroundAltInitialized && f.ARMED) || (f.BARO_MODE && f.ARMED && rcData[THROTTLE] < ESCnoFlyThrottle) || Altholdsupp ) //Throttle must be over esc_nfly = 1300 to go out baromode
             {
                 if (!f.BARO_MODE)                                    // Initialize Baromode here if it isn't already
                 {
