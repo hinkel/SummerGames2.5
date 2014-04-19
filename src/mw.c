@@ -523,7 +523,7 @@ void loop(void)
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
     int16_t         tmp0, tmp3, thrdiff, tmpTHR, tmpTHRdiff;
     uint32_t        auxState = 0, auxStateTMP;
-    uint8_t         axis, i, getTHR = 0, Altholdsupp;    
+    uint8_t         axis, i, getTHR, Altholdsupp;    
 
     // this will return false if spektrum is disabled. shrug.
     if (spektrumFrameComplete()) computeRC();                        // Generates no rcData yet, but rcDataSAVE
@@ -904,35 +904,36 @@ void loop(void)
             if (!f.GPS_LOG_MODE) f.GPS_LOG_MODE = GPSFloppyInitWrite(); // Will turn false if not armed or anything else is fucked up
         } else f.GPS_LOG_MODE = 0;
         
+	
+#ifdef BARO
 // althold is engage autonomously after for ex: 2000ms when throttle stick is not moving deadband fix = 30 
         
-	if (rcData[THROTTLE] > ESCnoFlyThrottle && cfg.al_suptime > 0 && !rcOptions[BOXBARO] && f.ARMED )
-	    { 
-            if (getTHR == 0)
-		{
-		 tmpTHR = rcData[THROTTLE];
-	         getTHR = 1;
-		}
+	if (rcData[THROTTLE] >= ESCnoFlyThrottle && cfg.al_suptime != 0 && !rcOptions[BOXBARO] && f.ARMED )
+	{   
+            if (getTHR == 1)
+	    {
+	        tmpTHR = rcData[THROTTLE];
+	        getTHR = 0;
+	    }
 	    AltholdsuppTimer = currentTimeMS + cfg.al_suptime;
 	    tmpTHRdiff = abs(tmpTHR - rcData[THROTTLE]);
 	    if (tmpTHRdiff > 30)                                         // deadband is set to 30 fix value
-		{
-		 AltholdsuppTimer = 0;
-		 getTHR	= 0;
-		}
+	    {
+		AltholdsuppTimer = 0;
+	        getTHR	= 1;
+	    }
             if (AltholdsuppTimer != 0 && currentTimeMS >= AltholdsuppTimer )
-		{
-		 Altholdsupp = 1;
-		}
-		else Altholdsupp = 0;
-	    } 
-	    else
-		{
-	         Altholdsupp = 0;
-		 getTHR	= 0;
-		}
-		
-#ifdef BARO
+	    {
+		Altholdsupp = 1;
+	    }
+	    else Altholdsupp = 0;
+	} 
+	else
+	{
+	    Altholdsupp = 0;
+            getTHR	= 1;
+	}
+	
         if (!f.ARMED)                                                // Reset Baro stuff while not armed, but keep the other shit running so that poor user can see a green box
             f.BARO_MODE = 0;                                         // and not cry in the forums my baro is dead, and someone writes some code that also tries to read out the baro serial number.
 
