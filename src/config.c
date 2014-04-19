@@ -185,7 +185,8 @@ static void resetConf(void)
     cfg.accz_alt_cf               = 0.940f;     // Crashpilot: Value for complementary filter accz and altitude
     cfg.baro_lag                  = 0.3f;       // Lag of Baro/Althold stuff in general, makes stop in hightchange snappier
     cfg.barodownscale             = 0.7f;       // Scale downmovement down (because copter drops faster than rising)
-
+    cfg.al_suptime                = 2000;       // 0 = disable // althold is engage autonomously after for ex: 2000 ms when throttle stick is not moving deadband fix = 25 Throttle
+  
     // Autoland
     cfg.al_barolr                 = 110;         // Temporary value "64" increase to increase Landingspeed
     cfg.al_snrlr                  = 75;         // You can specify different landingfactor here on sonar contact, because sonar land maybe too fast when snr_cf is high
