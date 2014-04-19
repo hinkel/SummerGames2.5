@@ -503,7 +503,7 @@ void loop(void)
 {
     static uint8_t  rcDelayCommand;                                  // this indicates the number of time (multiple of RC measurement at 50Hz) the sticks must be maintained to run or switch off motors
     static uint8_t  GoodRCcnt;                                       // Number of good consecutive Signals before arming
-    static uint32_t Failsafetimer, Killtimer, RTLGeneralTimer, AltRCTimer0, LastLoopTime, rcTime = 0, AutolandGeneralTimer;
+    static uint32_t Failsafetimer, Killtimer, RTLGeneralTimer, AltRCTimer0, LastLoopTime, rcTime = 0, AutolandGeneralTimer, AltholdsuppTimer;
     static uint32_t GPSlogTimer = 0, LastSerialTimeMS;
     float           error, errorAngle, AngleRateTmp, RateError, delta, deltaSum;
     float           PTerm, ITerm, PTermACC = 0, ITermACC = 0, PTermGYRO = 0, ITermGYRO = 0, DTerm;
@@ -521,9 +521,9 @@ void loop(void)
     static int16_t  DistanceToHomeMetersOnRTLstart;
     static uint8_t  PHminSat;
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
-    int16_t         tmp0, tmp3, thrdiff;
+    int16_t         tmp0, tmp3, thrdiff, tmpTHR, tmpTHRdiff;
     uint32_t        auxState = 0, auxStateTMP;
-    uint8_t         axis, i;    
+    uint8_t         axis, i, getTHR, Altholdsupp;    
 
     // this will return false if spektrum is disabled. shrug.
     if (spektrumFrameComplete()) computeRC();                        // Generates no rcData yet, but rcDataSAVE
