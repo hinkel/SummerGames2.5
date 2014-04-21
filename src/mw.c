@@ -923,7 +923,7 @@ void loop(void)
 	        getTHR = 1;
 	    }
 	    tmpTHRdiff = abs(tmpTHR - rcData[THROTTLE]);
-	    if (tmpTHRdiff > 30)                                         // deadband is set to 30 fix value
+	    if (tmpTHRdiff > cfg.al_deadsup)                                         // deadband is set to 30 fix value
 	    {
 	        AltholdsuppTimer = 0;
 	        getTHR	= 0;
@@ -1199,15 +1199,15 @@ void loop(void)
         }
         
         tmp3 = min(abs(rcData[YAW] - cfg.midrc), 500);   // Mode 2 Throttle Yaw on same stick
-        if (cfg.yawdeadband == 0) cfg.yawdeadband = 30;
+       //  if (cfg.yawdeadband == 0) cfg.yawdeadband = 30;
         thrdiff = rcData[THROTTLE] - cfg.midrc;
         tmp0    = abs(thrdiff);
         if (tmp0 < cfg.alt_hold_throttle_neutral && ThrFstTimeCenter == 0) ThrFstTimeCenter = 1;
         if (currentTimeMS >= AltRCTimer0)                                                                                       // X Hz Loop
         {
             AltRCTimer0 = currentTimeMS + 100;
-            if (ThrFstTimeCenter == 1 && tmp0 > cfg.alt_hold_throttle_neutral && tmp3 < cfg.yawdeadband)     // If Yaw Stick change do not interfere with Altitudehold  // Code for Mode 2 only              
-            {
+            if (ThrFstTimeCenter == 1 && tmp0 > cfg.alt_hold_throttle_neutral && tmp3 < cfg.yawdeadband && !Altholdsupp)     // If Yaw Stick change do not interfere with Altitudehold  // Code for Mode 2 only              
+            {                                                                           // if Altholdsupp atlhold ist fix no mouvement
                 initialThrottleHold = initialThrottleHold + (BaroP / 100);							                                      // Adjust Baselinethr by 1% of BaroP
                 if (LastAltThrottle < cfg.maxthrottle && thrdiff >= 0)
                 {
