@@ -42,6 +42,12 @@ uint8_t  SonarBreach = 0;                                            // 0 = Brea
 uint16_t LandDetectMinThr = 0;                                       // Is set upon Baro initialization in sensors/sensorsAutodetect
 float    pressure;
 int16_t  ESCnoFlyThrottle;
+uint32_t AltholdsuppTimer =0;                                        // Althold support stuf put here because bug with the loop
+int16_t  tmpTHR;                                                     // Althold support stuf
+int16_t  tmpTHRdiff;                                                 // Althold support stuf
+uint8_t  getTHR = 0;                                                 // Althold support stuf
+uint8_t  Altholdsupp = 0;                                            // Althold support stuf
+
 // **********************
 // GPS
 // **********************
@@ -503,7 +509,7 @@ void loop(void)
 {
     static uint8_t  rcDelayCommand;                                  // this indicates the number of time (multiple of RC measurement at 50Hz) the sticks must be maintained to run or switch off motors
     static uint8_t  GoodRCcnt;                                       // Number of good consecutive Signals before arming
-    static uint32_t Failsafetimer, Killtimer, RTLGeneralTimer, AltRCTimer0, LastLoopTime, rcTime = 0, AutolandGeneralTimer, AltholdsuppTimer;
+    static uint32_t Failsafetimer, Killtimer, RTLGeneralTimer, AltRCTimer0, LastLoopTime, rcTime = 0, AutolandGeneralTimer;
     static uint32_t GPSlogTimer = 0, LastSerialTimeMS;
     float           error, errorAngle, AngleRateTmp, RateError, delta, deltaSum;
     float           PTerm, ITerm, PTermACC = 0, ITermACC = 0, PTermGYRO = 0, ITermGYRO = 0, DTerm;
@@ -521,9 +527,9 @@ void loop(void)
     static int16_t  DistanceToHomeMetersOnRTLstart;
     static uint8_t  PHminSat;
     float           CosYawxPhase, SinYawyPhase, TmpPhase, tmp0flt, dT, MwiiTimescale;
-    int16_t         tmp0, tmp3, thrdiff, tmpTHR, tmpTHRdiff;
+    int16_t         tmp0, tmp3, thrdiff;
     uint32_t        auxState = 0, auxStateTMP;
-    uint8_t         axis, i, getTHR, Altholdsupp;    
+    uint8_t         axis, i;    
 
     // this will return false if spektrum is disabled. shrug.
     if (spektrumFrameComplete()) computeRC();                        // Generates no rcData yet, but rcDataSAVE
@@ -910,17 +916,17 @@ void loop(void)
         
 	if (rcData[THROTTLE] >= ESCnoFlyThrottle && cfg.al_suptime != 0 && !rcOptions[BOXBARO] && f.ARMED )
 	{   
-            if (getTHR == 1)
+            if (getTHR == 0)
 	    {
-	        tmpTHR = rcData[THROTTLE];
-	        getTHR = 0;
+	    	AltholdsuppTimer = currentTimeMS + (uint32_t)cfg.al_suptime;   // set Timer  
+	        tmpTHR = rcData[THROTTLE];                                     // Take Throttle value
+	        getTHR = 1;
 	    }
-	    AltholdsuppTimer = currentTimeMS + cfg.al_suptime;
 	    tmpTHRdiff = abs(tmpTHR - rcData[THROTTLE]);
 	    if (tmpTHRdiff > 30)                                         // deadband is set to 30 fix value
 	    {
-		AltholdsuppTimer = 0;
-	        getTHR	= 1;
+	        AltholdsuppTimer = 0;
+	        getTHR	= 0;
 	    }
             if (AltholdsuppTimer != 0 && currentTimeMS >= AltholdsuppTimer )
 	    {
@@ -931,7 +937,7 @@ void loop(void)
 	else
 	{
 	    Altholdsupp = 0;
-            getTHR	= 1;
+            getTHR	= 0;
 	}
 	
         if (!f.ARMED)                                                // Reset Baro stuff while not armed, but keep the other shit running so that poor user can see a green box
