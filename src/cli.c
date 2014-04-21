@@ -140,7 +140,7 @@ const clicmd_t cmdTable[] =
 const clivalue_t valueTable[] =
 {
     { "deadband",                  VAR_UINT8,  &cfg.deadband,                    0,        100, 1 },
-    { "yawdeadband",               VAR_UINT8,  &cfg.yawdeadband,                 0,        200, 1 },
+    { "yawdeadband",               VAR_UINT8,  &cfg.yawdeadband,                 5,        200, 1 },
     { "alt_hold_throttle_neutral", VAR_UINT8,  &cfg.alt_hold_throttle_neutral,   1,        250, 1 },
     { "gps_adddb",                 VAR_UINT8,  &cfg.gps_adddb,                   0,        200, 1 },
     { "midrc",                     VAR_UINT16, &cfg.midrc,                    1200,       1700, 1 },
@@ -227,6 +227,7 @@ const clivalue_t valueTable[] =
     { "baro_lag",                  VAR_FLOAT,  &cfg.baro_lag,                    0,         10, 1 },
     { "barodownscale",             VAR_FLOAT,  &cfg.barodownscale,               0,          1, 1 },
     { "al_suptime",                VAR_UINT16, &cfg.al_suptime,                  0,       6000, 1 },
+    { "al_deadsup",                VAR UINT8,  &cfg.al_deadsup                   0,        200, 1 },
     { "baro_debug",                VAR_UINT8,  &cfg.baro_debug,                  0,          1, 0 },
     { "moron_threshold",           VAR_UINT8,  &cfg.moron_threshold,             0,        128, 0 },
     { "mag_declination",           VAR_INT16,  &cfg.mag_declination,        -18000,      18000, 1 },
