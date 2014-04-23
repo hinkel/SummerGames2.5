@@ -912,9 +912,9 @@ void loop(void)
         
 	
 #ifdef BARO
-// althold is engage autonomously after for ex: 2000ms when throttle stick is not moving deadband fix = 30 
+// althold is engage autonomously after for ex: 2000ms when throttle stick is not moving deadband = 60 
         
-	if (rcData[THROTTLE] >= ESCnoFlyThrottle && cfg.al_suptime != 0 && !rcOptions[BOXBARO] && f.ARMED )
+	if (rcData[THROTTLE] >= ESCnoFlyThrottle && cfg.al_suptime != 0 && !rcOptions[BOXBARO] && f.ARMED && rcData[THROTTLE] <= cfg.al_maxthrsup)
 	{   
             if (getTHR == 0)
 	    {
