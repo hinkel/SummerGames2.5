@@ -187,6 +187,7 @@ static void resetConf(void)
     cfg.barodownscale             = 0.7f;       // Scale downmovement down (because copter drops faster than rising)
     cfg.al_suptime                = 2000;       // 0 = disable // althold is engage autonomously after for ex: 2000 ms when throttle stick is not moving deadband Throttle = 60 
     cfg.al_deadsup                = 60;         // Throttle deadband when Althold support is use up to 200 possible but not recommanded 
+    cfg.al_maxthrsup              = 1790;       // Over this throttle value Althold support is disangage
   
     // Autoland
     cfg.al_barolr                 = 110;         // Temporary value "64" increase to increase Landingspeed
