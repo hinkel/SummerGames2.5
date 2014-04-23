@@ -228,7 +228,7 @@ const clivalue_t valueTable[] =
     { "barodownscale",             VAR_FLOAT,  &cfg.barodownscale,               0,          1, 1 },
     { "al_suptime",                VAR_UINT16, &cfg.al_suptime,                  0,       6000, 1 },
     { "al_deadsup",                VAR_UINT8,  &cfg.al_deadsup,                  0,        200, 1 },
-    { "al_maxthrsup",              VAR_UINT16, &cfg.maxthrsup,                   0,       2000, 0 },
+    { "al_maxthrsup",              VAR_UINT16, &cfg.al_maxthrsup,                0,       2000, 0 },
     { "baro_debug",                VAR_UINT8,  &cfg.baro_debug,                  0,          1, 0 },
     { "moron_threshold",           VAR_UINT8,  &cfg.moron_threshold,             0,        128, 0 },
     { "mag_declination",           VAR_INT16,  &cfg.mag_declination,        -18000,      18000, 1 },
