@@ -42,6 +42,7 @@ uint8_t  SonarBreach = 0;                                            // 0 = Brea
 uint16_t LandDetectMinThr = 0;                                       // Is set upon Baro initialization in sensors/sensorsAutodetect
 float    pressure;
 int16_t  ESCnoFlyThrottle;
+int16_t  ESCnoFlyThrotsky;                                           // Not fall from sky test
 uint32_t AltholdsuppTimer =0;                                        // Althold support stuf put here because bug with the loop
 int16_t  tmpTHR;                                                     // Althold support stuf
 int16_t  tmpTHRdiff;                                                 // Althold support stuf
@@ -945,7 +946,7 @@ void loop(void)
 
         if (sensors(SENSOR_BARO))
         {
-            if ((rcOptions[BOXBARO] && GroundAltInitialized && f.ARMED) || (f.BARO_MODE && !Altholdsupp && f.ARMED && rcData[THROTTLE] < ESCnoFlyThrottle) || Altholdsupp) //Throttle must be over esc_nfly = 1300 to go out baromode
+            if ((rcOptions[BOXBARO] && GroundAltInitialized && f.ARMED) || (f.BARO_MODE && !Altholdsupp && f.ARMED && rcData[THROTTLE] < ESCnoFlyThrotsky) || Altholdsupp) //Throttle must be over ESCnoFlyThrotsky = 1220 to go out baromode
             {
                 if (!f.BARO_MODE)                                    // Initialize Baromode here if it isn't already
                 {
