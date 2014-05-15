@@ -487,6 +487,7 @@ extern uint8_t  SonarBreach;                // 0 = Breach unknown, 1 = breached 
 extern uint16_t LandDetectMinThr;           // Is set upon Baro initialization
 extern float    pressure;
 extern int16_t  ESCnoFlyThrottle;
+extern int16_t  ESCnoFlyThrotsky;           // Not fall from sky
 
 // GPS stuff
 extern int32_t  GPS_coord[2];
