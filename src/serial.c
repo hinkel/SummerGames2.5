@@ -271,9 +271,11 @@ static void evaluateCommand(void)
             serialize16(motor[i]);
         break;
     case MSP_RC:
-        headSerialReply((cfg.auxChannels + 4) * 2); // headSerialReply(16);
+        headSerialReply((cfg.auxChannels + 5) * 2); // cfg.auxChannels + 4 + 1 "rcCommand[THROTTLE"//MWOSD test // headSerialReply(18);
         for (i = 0; i < cfg.auxChannels + 4; i++)   // for (i = 0; i < 8; i++)
             serialize16(rcDataSAVE[i]);
+        serialize16(rcCommand[THROTTLE]); //serialize16(rcCommand[3]); // test for MWOSD
+            
         break;
     case MSP_RAW_GPS:
         headSerialReply(14);
