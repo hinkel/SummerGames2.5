@@ -274,7 +274,7 @@ static void evaluateCommand(void)
         headSerialReply((cfg.auxChannels + 5) * 2); // cfg.auxChannels + 4 + 1 "rcCommand[THROTTLE"//MWOSD test // headSerialReply(18);
         for (i = 0; i < cfg.auxChannels + 4; i++)   // for (i = 0; i < 8; i++)
             serialize16(rcDataSAVE[i]);
-        serialize16(rcCommand[THROTTLE]); //serialize16(rcCommand[3]); // test for MWOSD
+        serialize16(rcCommand[3]); //serialize16(rcCommand[THROTTLE]); // test for MWOSD
             
         break;
     case MSP_RAW_GPS:
