@@ -71,7 +71,7 @@ typedef enum MultiType
     MULTITYPE_HEX6 = 7,
     MULTITYPE_FLYING_WING = 8,
     MULTITYPE_Y4 = 9,
-    MULTITYPE_HEX6X = 10,
+    MULTITYPE_SPIDER6X = 10,
     MULTITYPE_OCTOX8 = 11,                  // Java GUI is same for the next 3 configs
     MULTITYPE_OCTOFLATP = 12,               // MultiWinGui shows this differently
     MULTITYPE_OCTOFLATX = 13,               // MultiWinGui shows this differently
