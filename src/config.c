@@ -99,7 +99,7 @@ static void resetConf(void)
     memset(&cfg, 0, sizeof(config_t));
 
     cfg.version = EEPROM_CONF_VERSION;
-    cfg.mixerConfiguration = MULTITYPE_QUADX;
+    cfg.mixerConfiguration = MULTITYPE_SPIDER6X;
     featureClearAll();
     featureSet(FEATURE_VBAT);
 //    featureSet(FEATURE_PPM);
