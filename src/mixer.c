@@ -65,7 +65,8 @@ static const motorMixer_t mixerY4[] =
     { 1.0f,  1.0f, -1.0f,  0.0f },          // FRONT_L CW
 };
 
-static const motorMixer_t mixerHex6X[] =
+/*
+static const motorMixer_t mixerHex6X[] =                      // Old version
 {
     { 1.0f, -0.866025f,  1.0f,  1.0f },     // REAR_R
     { 1.0f, -0.866025f, -1.0f,  1.0f },     // FRONT_R
@@ -73,6 +74,27 @@ static const motorMixer_t mixerHex6X[] =
     { 1.0f,  0.866025f, -1.0f, -1.0f },     // FRONT_L
     { 1.0f, -0.866025f,  0.0f, -1.0f },     // RIGHT
     { 1.0f,  0.866025f,  0.0f,  1.0f },     // LEFT
+};
+
+static const motorMixer_t mixerHex6X[] =                      // Actual Good version
+{ 
+    { 1.0f, -0.5f,  0.866025f,  1.0f },     // REAR_R 
+    { 1.0f, -0.5f, -0.866025f,  1.0f },     // FRONT_R 
+    { 1.0f,  0.5f,  0.866025f, -1.0f },     // REAR_L 
+    { 1.0f,  0.5f, -0.866025f, -1.0f },     // FRONT_L 
+    { 1.0f, -1.0f,  0.0f,      -1.0f },     // RIGHT 
+    { 1.0f,  1.0f,  0.0f,       1.0f },     // LEFT 
+}; 
+*/
+
+static const motorMixer_t mixerHex6X[] =                      // Version for Spider Hex6X (Calculate Motor Position).
+{
+    { 1.0f, -0.569343f,  0.941605f,  1.0f },     // REAR_R      //  { 1.0f, -0.569343f,  0.941605f,  0.569343f },
+    { 1.0f, -0.759124f, -0.941605f,  1.0f },     // FRONT_R     //  { 1.0f, -0.759124f, -0.941605f,  0.759124f },
+    { 1.0f,  0.569343f,  0.941605f, -1.0f },     // REAR_L      //  { 1.0f,  0.569343f,  0.941605f, -0.569434f }, 
+    { 1.0f,  0.759124f, -0.941605f, -1.0f },     // FRONT_L     //  { 1.0f,  0.759124f, -0.941605f, -0.759124f },
+    { 1.0f, -1.0f,       0.029197f, -1.0f },     // RIGHT       //  { 1.0f, -1.0f,       0.029197f, -1.0f      },
+    { 1.0f,  1.0f,       0.029197f,  1.0f },     // LEFT        //  { 1.0f,  1.0f,       0.029197f,  1.0f      },
 };
 
 static const motorMixer_t mixerOctoX8[] =
