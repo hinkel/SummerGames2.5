@@ -84,7 +84,7 @@ static const motorMixer_t mixerY4[] =
     { 1.0f, -0.866025f,  0.0f, -1.0f },     // RIGHT
     { 1.0f,  0.866025f,  0.0f,  1.0f },     // LEFT
 };
-
+*/
 
 static const motorMixer_t mixerHex6X[] =                           // Actual Good version
 { 
@@ -95,16 +95,15 @@ static const motorMixer_t mixerHex6X[] =                           // Actual Goo
     { 1.0f, -1.0f,  0.0f,      -1.0f },     // RIGHT 
     { 1.0f,  1.0f,  0.0f,       1.0f },     // LEFT 
 }; 
-*/
 
 static const motorMixer_t mixerSpider6X[] =                      // Version for Spider Hex6X (Calculate Motor Position).
 {
-    { 1.0f, -0.569343f,  0.941605f,  0.569343f },     // REAR_R
-    { 1.0f, -0.759124f, -0.941605f,  0.759124f },     // FRONT_R
-    { 1.0f,  0.569343f,  0.941605f, -0.569434f },     // REAR_L
-    { 1.0f,  0.759124f, -0.941605f, -0.759124f },     // FRONT_L
-    { 1.0f, -1.0f,       0.029197f, -1.0f      },     // RIGHT
-    { 1.0f,  1.0f,       0.029197f,  1.0f      },     // LEFT
+    { 1.0f, -0.569343f,  0.941605f,  1.0f },     // REAR_R      //  { 1.0f, -0.569343f,  0.941605f,  0.569343f },
+    { 1.0f, -0.759124f, -0.941605f,  1.0f },     // FRONT_R     //  { 1.0f, -0.759124f, -0.941605f,  0.759124f },
+    { 1.0f,  0.569343f,  0.941605f, -1.0f },     // REAR_L      //  { 1.0f,  0.569343f,  0.941605f, -0.569434f }, 
+    { 1.0f,  0.759124f, -0.941605f, -1.0f },     // FRONT_L     //  { 1.0f,  0.759124f, -0.941605f, -0.759124f },
+    { 1.0f, -1.0f,       0.029197f, -1.0f },     // RIGHT       //  { 1.0f, -1.0f,       0.029197f, -1.0f      },
+    { 1.0f,  1.0f,       0.029197f,  1.0f },     // LEFT        //  { 1.0f,  1.0f,       0.029197f,  1.0f      },
 };
 
 
@@ -166,7 +165,7 @@ const mixer_t mixers[] =
     { 6, 0, mixerHex6P },          // MULTITYPE_HEX6
     { 1, 1, NULL },                // * MULTITYPE_FLYING_WING
     { 4, 0, mixerY4 },             // MULTITYPE_Y4
-//    { 6, 0, mixerHex6X },          // MULTITYPE_HEX6X
+    { 6, 0, mixerHex6X },          // MULTITYPE_HEX6X
     { 6, 0, mixerSpider6X },       // MULTITYPE_SPIDER6X
     { 8, 0, mixerOctoX8 },         // MULTITYPE_OCTOX8
     { 8, 0, mixerOctoFlatP },      // MULTITYPE_OCTOFLATP
