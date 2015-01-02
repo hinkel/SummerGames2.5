@@ -46,6 +46,7 @@ void baseflight_mavlink_init(void)
         break;
     case MULTITYPE_Y6:
     case MULTITYPE_HEX6:
+    case MULTITYPE_HEX6X:
     case MULTITYPE_SPIDER6X:
         system_type = MAV_TYPE_HEXAROTOR;
         break;
