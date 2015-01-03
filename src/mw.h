@@ -4,7 +4,7 @@
 #define VBATFREQ 6                          // to read battery voltage - nth number of loop iterations
 
 #define  VERSION  211
-#define  FIRMWARE  "Naze32 Harakiri10 Summer Games2.5" __DATE__ " / " __TIME__
+#define  FIRMWARE  "Harakiri Spider lite test Games2.5" __DATE__ " / " __TIME__
 #define  FIRMWAREFORLCD "Harakiri 10"
 
 #define LAT  0
